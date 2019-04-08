@@ -4,6 +4,7 @@
 ".\obj\main.o"
 ".\obj\gpio.o"
 ".\obj\myblinkled.o"
+".\obj\myblinkled2.o"
 ".\obj\utility.o"
 --strict --scatter ".\Obj\Library.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols

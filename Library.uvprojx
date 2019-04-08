@@ -508,6 +508,11 @@
               <FileType>8</FileType>
               <FilePath>.\MyBlinkLED.cpp</FilePath>
             </File>
+            <File>
+              <FileName>MyBlinkLED2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\MyBlinkLED2.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
