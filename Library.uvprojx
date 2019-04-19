@@ -498,6 +498,11 @@
               <FileType>8</FileType>
               <FilePath>.\GPIO.cpp</FilePath>
             </File>
+            <File>
+              <FileName>UART.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\UART.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -512,6 +517,11 @@
               <FileName>MyBlinkLED2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\MyBlinkLED2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>HelloWorld.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\HelloWorld.cpp</FilePath>
             </File>
           </Files>
         </Group>

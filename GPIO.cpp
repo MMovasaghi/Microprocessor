@@ -14,6 +14,7 @@ GPIO::GPIO()
 void GPIO::SetInterrupt(int port, int pin, Edge edge)
 {
 	SetDirection(port, pin, 0);
+	NVIC_EnableIRQ(EINT3_IRQn);
 	if (port == 2)
 	{
 		if ((edge == FallingEdge) || (edge == BothEdge))
@@ -60,7 +61,7 @@ void GPIO::SetDirection(int port, int pin, int dir)
 
 void GPIO::Set(int port, int pin)
 {
-	GPIOs[port]->FIOSET = 1 << pin;
+	//GPIOs[port]->FIOSET = 1 << pin;
 	if (port == 0)
 		LPC_GPIO0->FIOSET = 1 << pin;
 	else if (port == 1)

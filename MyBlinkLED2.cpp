@@ -6,7 +6,7 @@ void BlinkLED2::Init()
 {
 	LEDBlinkDir = true;
 	//gpio.SetDirection(2, 12, 0);
-	gpio.SetInterrupt(2, 12, FallingEdge);
+	gpio.SetInterrupt(2, 12, BothEdge);
 	for (int i = 0; i < 8; i++)
 		gpio.SetDirection(2, i, 1);
 }
@@ -15,7 +15,7 @@ void BlinkLED2::Run()
 {
 	while(true)
 	{
-//		if (gpio.getValue(2, 11))
+//		if (gpio.getValue(2, 11) == false)
 //			LEDBlinkDir = !LEDBlinkDir;
 		
 		if (LEDBlinkDir == true)
@@ -45,5 +45,7 @@ void BlinkLED2::Run()
 void BlinkLED2::InterruptHandler()
 {
 	if (LPC_GPIOINT->IO2IntStatF & (1 << 12))
+			LEDBlinkDir = !LEDBlinkDir;
+	if (LPC_GPIOINT->IO2IntStatR & (1 << 12))
 			LEDBlinkDir = !LEDBlinkDir;
 }
