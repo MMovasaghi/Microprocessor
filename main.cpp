@@ -4,7 +4,7 @@
 
 BlinkLED leds;
 BlinkLED2 leds2;
-
+	
 void BlinkLEDTest()
 {
 	leds.Init();
@@ -20,6 +20,7 @@ void BlinkLED2Test()
 int main (void) 
 {
 	SystemInit();
+	
 	BlinkLED2Test();
 }
 
