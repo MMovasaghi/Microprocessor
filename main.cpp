@@ -20,6 +20,6 @@ void BlinkLED2Test()
 int main (void) 
 {
 	SystemInit();
-  BlinkLED2Test();
+	BlinkLED2Test();
 }
 
