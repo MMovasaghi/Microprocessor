@@ -8,7 +8,7 @@ void systick::Set_Intrrupt()
 {
     NVIC_EnableIRQ(SysTick_IRQn);
     /* Enable the Systick, Systick Interrup and select CPU Clock Source */
-    STCTRL = (1<<SBIT_ENABLE) | (1<<SBIT_TICKINT) | (1<<SBIT_CLKSOURCE);
+    STCTRL = (1<<SBIT_ENABLE) | (1<<SBIT_TICKINT) | (1<<SBIT_CLKSOURCE); // = 7
 }
 
 extern "C"

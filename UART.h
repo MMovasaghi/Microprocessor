@@ -26,10 +26,14 @@ class UART
 {
 	public:
 		void Init(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate);
+		void InitInterrupt(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate);
 		void Connect(int uartNo);
 		void SetBaudRate(char UartNum, int Baudrate);
-		void Send(unsigned char d);
-		unsigned char Get();
+		bool DataAvailable(char UartNum);
+		void Send(char UartNo, unsigned char d);
+		void Send(char UartNo, char* str);
+		unsigned char Get(char UartNo);
+		void InterruptHandler(char UartNo);
 };
 
 #endif

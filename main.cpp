@@ -1,10 +1,14 @@
 #include "lpc17xx.h"
 #include "MyBlinkLED.h"
 #include "MyBlinkLED2.h"
+#include "HelloWorld.h"
+#include "uart.h"
 
 BlinkLED leds;
 BlinkLED2 leds2;
-	
+HelloWorld hw;
+UART uart;
+
 void BlinkLEDTest()
 {
 	leds.Init();
@@ -17,10 +21,15 @@ void BlinkLED2Test()
 	leds2.Run();
 }
 
+void HelloWorldTest()
+{
+	hw.Init();
+	hw.Run4();
+}
+
 int main (void) 
 {
 	SystemInit();
-	
-	BlinkLED2Test();
+  HelloWorldTest();
 }
 

@@ -11,11 +11,22 @@ void UART::Connect(int uartNo)
 	}
 }
 
+void UART::InitInterrupt(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate)
+{
+	Init(uartNo, dlen, sb, p, Buadrate);
+	if (uartNo == 2)
+	{
+		NVIC_EnableIRQ(UART2_IRQn);
+		LPC_UART2->IER = 3;
+	}
+}
+
 void UART::Init(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate)
 {
 	Connect(uartNo);
 	if (uartNo == 2)
 	{
+		LPC_SC->PCONP |= 1 << 24;
 		LPC_UART2->LCR = dlen;
 		LPC_UART2->LCR |= sb << 2;
 		if (p != Parity_Non)
@@ -97,14 +108,58 @@ void UART::SetBaudRate(char UartNum, int Baudrate)
 	}
 }
 
-void UART::Send(unsigned char d)
+void UART::Send(char UartNo, unsigned char d)
 {
-	while (!(LPC_UART2->LSR & (1 << 5)));
-	LPC_UART2->THR = d;
+	if (UartNo == 2)
+	{
+		while (!(LPC_UART2->LSR & (1 << 5)));
+		LPC_UART2->THR = d;
+	}
 }
 
-unsigned char UART::Get()
+void UART::Send(char UartNo, char* str)
 {
-	while (!(LPC_UART2->LSR & 1));
-	return LPC_UART2->RBR ;
+	int index= 0;
+	while(str[index] != 0)
+	{
+		Send(UartNo, str[index]);
+		index++;
+	}
+}
+
+bool UART::DataAvailable(char UartNo)
+{
+	if (UartNo == 2)
+		return (LPC_UART2->LSR & 1);
+	
+	return false;
+}
+
+unsigned char UART::Get(char UartNo)
+{
+	while (!DataAvailable(UartNo));
+	if (UartNo == 2)
+		return LPC_UART2->RBR ;
+}
+
+void UART::InterruptHandler(char UartNo)
+{
+	unsigned int iir = (LPC_UART2->IIR >> 1) & 7;
+	if (iir == 1)	//Transmit complete
+	{
+		
+	}
+	else if (iir == 2)	//Data Recieved
+	{
+		Send(2, LPC_UART2->RBR);
+	}
+}
+
+extern "C"
+{
+	extern UART uart;
+	void UART2_IRQHandler()
+	{
+		uart.InterruptHandler(2);
+	}
 }
