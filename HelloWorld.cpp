@@ -1,6 +1,7 @@
 #include "HelloWorld.h"
 #include "UART.h"
 #include "Utility.h"
+#include "WatchDog.h"
 extern UART uart;
 
 void HelloWorld::Init()
@@ -50,11 +51,27 @@ void HelloWorld::Run3()
 		//Utility::Delay(9999999);
 	}
 }
-
+extern WatchDog watchdog;
 void HelloWorld::Run4()
 {
+	int MessageNum = 1;
+	char d;
+	uart.Send2(2, "\r\n**********System is started **********\r\n");
 	while(true)
 	{
-		Utility::Delay(999999999);
+//		if (uart.DataAvailable2(2))
+//		{
+//			d = uart.Get2(2);
+//			if (d == 'a')
+//				MessageNum = 1;
+//			else
+//				MessageNum = 2;
+//		}
+		if (MessageNum == 1)
+			uart.Send2(2, "Hello World\t");
+		else if (MessageNum == 2)
+			uart.Send2(2, "Goodbye World\t");
+		Utility::Delay(9999999);
+		watchdog.Feed();
 	}
 }

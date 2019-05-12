@@ -4,6 +4,8 @@
 ".\obj\main.o"
 ".\obj\gpio.o"
 ".\obj\uart.o"
+".\obj\fifo.o"
+".\obj\watchdog.o"
 ".\obj\myblinkled.o"
 ".\obj\myblinkled2.o"
 ".\obj\helloworld.o"

@@ -1,5 +1,6 @@
 #ifndef UART_H
 #define UART_H
+#include "Fifo.h"
 
 enum DataLength
 {
@@ -30,10 +31,17 @@ class UART
 		void Connect(int uartNo);
 		void SetBaudRate(char UartNum, int Baudrate);
 		bool DataAvailable(char UartNum);
+		bool DataAvailable2(char UartNum);
 		void Send(char UartNo, unsigned char d);
 		void Send(char UartNo, char* str);
 		unsigned char Get(char UartNo);
+		void Send2(char UartNo, unsigned char d);
+		void Send2(char UartNo, char* str);
+		unsigned char Get2(char UartNo);
 		void InterruptHandler(char UartNo);
+	
+		Fifo ReceiveBuffer2;
+		Fifo SendBuffer2;
 };
 
 #endif

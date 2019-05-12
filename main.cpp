@@ -3,11 +3,13 @@
 #include "MyBlinkLED2.h"
 #include "HelloWorld.h"
 #include "uart.h"
+#include "Watchdog.h"
 
 BlinkLED leds;
 BlinkLED2 leds2;
 HelloWorld hw;
 UART uart;
+WatchDog watchdog;
 
 void BlinkLEDTest()
 {
@@ -30,6 +32,7 @@ void HelloWorldTest()
 int main (void) 
 {
 	SystemInit();
+	watchdog.Init();
   HelloWorldTest();
 }
 

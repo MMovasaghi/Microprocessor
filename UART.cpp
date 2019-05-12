@@ -26,6 +26,8 @@ void UART::Init(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate)
 	Connect(uartNo);
 	if (uartNo == 2)
 	{
+		ReceiveBuffer2.Init(500);
+		SendBuffer2.Init(500);
 		LPC_SC->PCONP |= 1 << 24;
 		LPC_UART2->LCR = dlen;
 		LPC_UART2->LCR |= sb << 2;
@@ -117,12 +119,33 @@ void UART::Send(char UartNo, unsigned char d)
 	}
 }
 
+void UART::Send2(char UartNo, unsigned char d)
+{
+	if (UartNo == 2)
+	{
+		if(LPC_UART2->LSR & (1 << 5))
+			LPC_UART2->THR = d;
+		else
+			SendBuffer2.Enqueue(d);
+	}
+}
+
 void UART::Send(char UartNo, char* str)
 {
 	int index= 0;
 	while(str[index] != 0)
 	{
 		Send(UartNo, str[index]);
+		index++;
+	}
+}
+
+void UART::Send2(char UartNo, char* str)
+{
+	int index= 0;
+	while(str[index] != 0)
+	{
+		Send2(UartNo, str[index]);
 		index++;
 	}
 }
@@ -135,11 +158,22 @@ bool UART::DataAvailable(char UartNo)
 	return false;
 }
 
+bool UART::DataAvailable2(char UartNo)
+{
+	if (ReceiveBuffer2.Count > 0)
+		return true;
+	else	
+		return false;
+}
+
 unsigned char UART::Get(char UartNo)
 {
-	while (!DataAvailable(UartNo));
-	if (UartNo == 2)
-		return LPC_UART2->RBR ;
+	
+}
+
+unsigned char UART::Get2(char UartNo)
+{
+	return ReceiveBuffer2.Dequeue();
 }
 
 void UART::InterruptHandler(char UartNo)
@@ -147,11 +181,15 @@ void UART::InterruptHandler(char UartNo)
 	unsigned int iir = (LPC_UART2->IIR >> 1) & 7;
 	if (iir == 1)	//Transmit complete
 	{
-		
+		if (SendBuffer2.Count > 0)
+			LPC_UART2->THR = SendBuffer2.Dequeue();
 	}
 	else if (iir == 2)	//Data Recieved
 	{
-		Send(2, LPC_UART2->RBR);
+		if (ReceiveBuffer2.Enqueue(LPC_UART2->RBR) == false)
+		{
+			//Send2(2, "Recieve Buffer is Full");
+		}
 	}
 }
 
