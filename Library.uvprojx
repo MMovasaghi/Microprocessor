@@ -536,6 +536,26 @@
               <FileType>5</FileType>
               <FilePath>.\RTCApp.h</FilePath>
             </File>
+            <File>
+              <FileName>App1.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\App1.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>App2.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\App2.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>App3.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App3.h</FilePath>
+            </File>
+            <File>
+              <FileName>App3.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\App3.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

@@ -9,6 +9,10 @@
 #include "Timer.h"
 #include "Utility.h"
 
+#include "App1.h"
+#include "App2.h"
+#include "App3.h"
+
 BlinkLED leds;
 BlinkLED2 leds2;
 HelloWorld hw;
@@ -57,10 +61,51 @@ void TimerTest()
 	uart.InitInterrupt(2, Data_8Bits, Stop_1Bit, Parity_Non, 9600);
 	uart.Send2(2, "\r\n**********System is started **********\r\n");
 	timer.Init();
+	rtc.Init();
+	rtc.SetTime();
 	while(true)
 	{
-		uart.Send2(2, "Every one second\r\n");
-		Utility::DelayMicroSecond(3000000);
+		rtc.Print();
+		Utility::DelayMicroSecond(1000000);
+		watchdog.Feed();
+	}
+}
+
+App1 app1;
+App2 app2;
+App3 app3;
+void ReadTimes()
+{
+	unsigned int Diff;
+	if (systick.LastTime != systick.TimerCounter)
+	{
+		Diff = systick.TimerCounter - systick.LastTime;
+		systick.LastTime = systick.TimerCounter;
+		app1.TimeCount += Diff;
+		app2.TimeCount += Diff;
+		app3.TimeCount += Diff;
+	}
+}
+
+void RunApps()
+{
+	uart.InitInterrupt(2, Data_8Bits, Stop_1Bit, Parity_Non, 9600);
+	uart.Send2(2, "\r\n**********System is started **********\r\n");
+	systick.Init(40);
+	rtc.Init();
+	rtc.SetTime();
+	
+	app1.Init();
+	app2.Init();
+	app3.Init();
+	
+	while (true)
+	{
+		ReadTimes();
+		app1.Run();
+		app2.Run();
+		app3.Run();
+		
 		watchdog.Feed();
 	}
 }
@@ -69,6 +114,6 @@ int main (void)
 {
 	SystemInit();
 	watchdog.Init();
-	TimerTest();
+	RunApps();
 }
 

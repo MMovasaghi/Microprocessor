@@ -12,6 +12,9 @@
 ".\obj\myblinkled.o"
 ".\obj\myblinkled2.o"
 ".\obj\helloworld.o"
+".\obj\app1.o"
+".\obj\app2.o"
+".\obj\app3.o"
 ".\obj\utility.o"
 --strict --scatter ".\Obj\Library.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
