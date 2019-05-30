@@ -46,40 +46,6 @@ void RTCTimer::SetTime()
 	LPC_RTC->SEC = 50;
 }
 
-extern UART uart;
-void RTCTimer::Print()
-{
-	PrintDecimal(LPC_RTC->YEAR, 4);
-	uart.Send2(2, "/");
-	PrintDecimal(LPC_RTC->MONTH);
-	uart.Send2(2, "/");
-	PrintDecimal(LPC_RTC->DOM);
-	uart.Send2(2, "  ");
-	PrintDecimal(LPC_RTC->HOUR);
-	uart.Send2(2, ":");
-	PrintDecimal(LPC_RTC->MIN);
-	uart.Send2(2, ":");
-	PrintDecimal(LPC_RTC->SEC);
-	uart.Send2(2, "\r\n");
-}
-
-void RTCTimer::PrintDecimal(int d, char padding)
-{
-	char buf[10];
-	char r = 0;
-	while(d)
-	{
-		buf[r++] = (d % 10) + 48;
-		d /= 10;
-	}
-	
-	for (signed char i = r; i < padding; i++)
-		uart.Send2(2, '0');
-	for (signed char i = r - 1; i >= 0; i--)
-		uart.Send2(2, buf[i]);
-}
-
-
 void RTCTimer::InterruptHandler()
 {
 	LPC_RTC->ILR |= 1;		/* clear interrupt flag */

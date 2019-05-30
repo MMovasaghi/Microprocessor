@@ -1,6 +1,12 @@
 #include "uart.h"
 #include "lpc17xx.h"
 
+
+void UART::send(char d)
+{
+	Send(2, d);
+}
+
 void UART::Connect(int uartNo)
 {
 	if (uartNo == 2)

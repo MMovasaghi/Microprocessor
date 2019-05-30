@@ -1,6 +1,7 @@
 #ifndef UART_H
 #define UART_H
 #include "Fifo.h"
+#include "OutOperator.h"
 
 enum DataLength
 {
@@ -23,9 +24,11 @@ enum Parity
 	Parity_Non = 10
 };
 
-class UART
+class UART : public OutOperator
 {
 	public:
+		void send(char d);
+	
 		void Init(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate);
 		void InitInterrupt(int uartNo, DataLength dlen, StopBit sb, Parity p, int Buadrate);
 		void Connect(int uartNo);

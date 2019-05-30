@@ -50,7 +50,7 @@ void RTCTest()
 	//rtc.SetTime();
 	while (true)
 	{
-		rtc.Print();
+		uart << rtc;
 		Utility::Delay(9999999);
 		watchdog.Feed();
 	}
@@ -65,7 +65,7 @@ void TimerTest()
 	rtc.SetTime();
 	while(true)
 	{
-		rtc.Print();
+		uart << rtc;
 		Utility::DelayMicroSecond(1000000);
 		watchdog.Feed();
 	}
@@ -90,7 +90,7 @@ void ReadTimes()
 void RunApps()
 {
 	uart.InitInterrupt(2, Data_8Bits, Stop_1Bit, Parity_Non, 9600);
-	uart.Send2(2, "\r\n**********System is started **********\r\n");
+	uart << "\r\n**********System is started **********\r\n";
 	systick.Init(40);
 	rtc.Init();
 	rtc.SetTime();

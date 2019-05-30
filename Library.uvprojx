@@ -532,11 +532,6 @@
               <FilePath>.\HelloWorld.cpp</FilePath>
             </File>
             <File>
-              <FileName>RTCApp.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\RTCApp.h</FilePath>
-            </File>
-            <File>
               <FileName>App1.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\App1.cpp</FilePath>
@@ -545,11 +540,6 @@
               <FileName>App2.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\App2.cpp</FilePath>
-            </File>
-            <File>
-              <FileName>App3.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\App3.h</FilePath>
             </File>
             <File>
               <FileName>App3.cpp</FileName>
@@ -565,6 +555,11 @@
               <FileName>Utility.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\Utility.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>OutOperator.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\OutOperator.cpp</FilePath>
             </File>
           </Files>
         </Group>

@@ -34,14 +34,17 @@ void App3::Run()
 			switch (stat)
 			{
 				case 1:
+					uart << 'A';
 					uart.Send2(2, 'A');
 					stat++;
 					break;
 				case 2:
+					uart << 'B';
 					uart.Send2(2, 'B');
 					stat++;
 					break;
 				case 3:
+					uart << 'C';
 					uart.Send2(2, 'C');
 					stat = 0;
 					break;
@@ -50,14 +53,17 @@ void App3::Run()
 		switch (stat)
 		{
 			case 1:
+				uart << 'C';
 				uart.Send2(2, 'C');
 				stat++;
 				break;
 			case 2:
+				uart << 'B';
 				uart.Send2(2, 'B');
 				stat++;
 				break;
 			case 3:
+				uart << 'A';
 				uart.Send2(2, 'A');
 				stat = 0;
 				break;
