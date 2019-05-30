@@ -335,7 +335,7 @@
             <v6WtE>0</v6WtE>
             <v6Rtti>0</v6Rtti>
             <VariousControls>
-              <MiscControls></MiscControls>
+              <MiscControls>--asm</MiscControls>
               <Define></Define>
               <Undefine></Undefine>
               <IncludePath>.\System&amp;Utility;.\Retarget;.\ARMDRIVER;.\Application;.\Startup;.\AppDRIVER;.\Cryptography;C:\Keil\ARM\INC\NXP\LPC17xx;C:\Keil\ARM\CMSIS\Include;C:\Keil\ARM\RV31\INC</IncludePath>
@@ -496,6 +496,21 @@
               <FileType>8</FileType>
               <FilePath>.\WatchDog.cpp</FilePath>
             </File>
+            <File>
+              <FileName>SysTick.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\SysTick.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RTCTimer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\RTCTimer.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>Timer.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\Timer.cpp</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -515,6 +530,11 @@
               <FileName>HelloWorld.cpp</FileName>
               <FileType>8</FileType>
               <FilePath>.\HelloWorld.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>RTCApp.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\RTCApp.h</FilePath>
             </File>
           </Files>
         </Group>

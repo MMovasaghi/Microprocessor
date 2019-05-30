@@ -2,6 +2,7 @@
 #include "UART.h"
 #include "Utility.h"
 #include "WatchDog.h"
+#include "Systick.h"
 extern UART uart;
 
 void HelloWorld::Init()
@@ -72,6 +73,29 @@ void HelloWorld::Run4()
 		else if (MessageNum == 2)
 			uart.Send2(2, "Goodbye World\t");
 		Utility::Delay(9999999);
+		watchdog.Feed();
+	}
+}
+
+extern SystemTick systick;
+void HelloWorld::Run5()
+{
+	uart.Send2(2, "\r\n**********System is started **********\r\n");
+	unsigned int count = 0;
+	unsigned int Diff;
+	while (true)
+	{
+		if (systick.LastTime != systick.TimerCounter)
+		{
+			Diff = systick.TimerCounter - systick.LastTime;
+			systick.LastTime = systick.TimerCounter;
+			count += Diff;
+		}
+		if (count == 100)
+		{
+			uart.Send2(2, "Hello\r\n");
+			count = 0;
+		}
 		watchdog.Feed();
 	}
 }
