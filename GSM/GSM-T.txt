@@ -1,0 +1,4 @@
+https://lastminuteengineers.com/sim900-gsm-shield-arduino-tutorial/
+https://www.pantechsolutions.net/how-to-interface-gsm-with-lpc2148-arm
+https://randomnerdtutorials.com/sim900-gsm-gprs-shield-arduino/
+https://os.mbed.com/questions/4922/send-SMS-with-SIM-900/
