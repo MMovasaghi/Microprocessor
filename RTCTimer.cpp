@@ -14,7 +14,7 @@ void RTCTimer::Init()
 	LPC_SC->PCONP |= (1 << 9);
 	/* If RTC is stopped, clear STOP bit. */
 	if ( LPC_RTC->RTC_AUX & (0x1<<4) )
-	LPC_RTC->RTC_AUX |= (0x1<<4);	
+		LPC_RTC->RTC_AUX |= (0x1<<4);	
 	/*--- Initialize registers ---*/    
 	LPC_RTC->AMR = 0xFF;
 	LPC_RTC->CIIR = 0;

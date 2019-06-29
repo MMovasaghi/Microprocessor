@@ -11,6 +11,7 @@ void Timer::Init()
 
 void Timer::SetInterval(char MRNum, unsigned int MicroSeconds)
 {
+	//25*10^6 Hz => 25 Hz : 1 MicroSeconds
 	if (MRNum == 0)
 		LPC_TIM0->MR0 = 25 * MicroSeconds;
 	else if (MRNum == 1)
