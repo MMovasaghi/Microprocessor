@@ -1,0 +1,61 @@
+#include <device.h> // Include any device header files required for UART and GPIO operation
+#include <string.h> // Include <string.h> file to allow for string manipulation
+ 
+// Provide global definitions for things like special character ASCII codes, buffer sizes, etc.
+#define CR 0x0D
+#define MAX_NUM_CHAR 26
+//...etc...
+ 
+// Declare global variables like command buffers, display headers, etc.
+const char startup_header[] = "XBee AT Mode Example\n\r";
+char cmd_buf[MAX_NUM_CHAR];
+//...etc...
+ 
+// Include function prototypes if they occur after main() function
+void XBee_Enter_Command_Mode (void);
+//...etc...
+ 
+void main() {
+    // Initialize system variables
+    // Initialize UARTs
+    // Initialize SW2 Port[Pin], PSoC designs accomplish this through GUI instead of application code
+     
+    // Print startup headers on PC terminal
+ 
+    for(;;) {
+  
+        //////////////////// Handle button press ////////////////////
+        // Read SW2 and change application state if button is pressed
+        // Must provide some sort of debounce functionality, such as a short (500ms) delay
+        /////////////////////////////////////////////////////////////
+ 
+ 
+        //////// Handle characters received from remote XBee ////////
+        // Get characters from XBee UART
+        // Print valid received characters on local terminal
+        /////////////////////////////////////////////////////////////
+ 
+ 
+        /////////////// Handle characters entered by user from local terminal ///////////////
+        // Get characters from local terminal
+        // If in command mode
+            // If character is just an alphanumeric character, store in command buffer, increment command buffer index, print character to local terminal
+            // If <backspace> was pressed:
+                // if command buffer index > 0
+                    // send BS character to local terminal
+                    // send whitespace character to local terminal
+                    // send BS character to local terminal
+                    // decrement command buffer index
+                // if command buffer index = 0, do nothing         
+            // If <enter> was pressed:
+                // Print newline to local terminal
+                // Check command buffer for valid command
+                    // If valid, put XBee in command mode, send command, wait for response, print some sort of response in local terminal, exit command mode
+                    // If not valid, print error message
+                // Erase command buffer
+                // Reset command buffer index
+        // If in Transmit mode
+                //print character to local terminal, send character through XBee UART (to be displayed on remote terminal)
+        //////////////////////////////////////////////////////////////////////////////////////
+   }
+}
