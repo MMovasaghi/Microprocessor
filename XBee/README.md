@@ -17,9 +17,11 @@ pc.baud(9600);  //pc serial baud rate
 > ATSL <ENTER>  // The terminal will display the LOWER 32 bits of the module's Serial ID
 
 > ATDH <ENTER>  // The terminal will Destination Address UPPER 32 bits of the module's Serial ID
+  
 > ATDH <Destination Address UPPER 32 bits of the module's Serial ID><ENTER>  // To Change the terminal will Destination Address UPPER 32 bits of the module's Serial ID
 
 > ATDL <ENTER>  // The terminal will Destination Address LOWER 32 bits of the module's Serial ID
+  
 > ATDL <Destination Address LOWER 32 bits of the module's Serial ID><ENTER>  // To Change the terminal will Destination Address LOWER 32 bits of the module's Serial ID
 
 > ATAC <ENTER>  // Apply Changes (Save changes)
