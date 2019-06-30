@@ -3,7 +3,9 @@
 * [Site-Source](https://www.digikey.com/eewiki/display/Wireless/XBee+AT+Mode+-+Transmit+and+Command+Mode+Example)
 
 xbee.attach(&ReceiveXbee);  //attach the xbee interrupt service upon byte receipt
+<br/>
 xbee.baud(9600);  //xbee baud rate
+<br/>
 pc.baud(9600);  //pc serial baud rate
 
 > Command Mode <ENTER> // Set the mode to get commands
