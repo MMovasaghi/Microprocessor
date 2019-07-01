@@ -14,10 +14,7 @@ void BlinkLED2::Init()
 void BlinkLED2::Run()
 {
 	while(true)
-	{
-//		if (gpio.getValue(2, 11) == false)
-//			LEDBlinkDir = !LEDBlinkDir;
-		
+	{		
 		if (LEDBlinkDir == true)
 		{
 			for (int i = 0; i < 8; i++)
